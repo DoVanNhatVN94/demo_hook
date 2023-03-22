@@ -1,24 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+/** @format */
+
+import React, { useState } from "react";
+
+import "./App.css";
+import Memo from "./components/Memo";
 
 function App() {
+  const [obj, setObj] = useState({ name: "", age: 0 });
+
+  console.log("Parent excute");
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <header></header>
+      <main>
+        <h1>Name {obj.name}</h1>
+        <h1>Age {obj.age}</h1>
+        <button
+          onClick={() => {
+            console.log("change");
+            const newProp = { name: "nhat", age: 28 };
+            setObj(newProp);
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          Click Change
+        </button>{" "}
+        <button
+          onClick={() => {
+            console.log("change 2");
+            const newProp = {...obj}
+            newProp.age= 100
+            setObj(newProp);
+          }}
+        >
+          Click Change 2
+        </button>
+        <Memo obj={obj} />
+      </main>
+      <footer></footer>
     </div>
   );
 }
